@@ -95,7 +95,11 @@ export class Api {
   }
 
   createPost(post: PostDTO): Promise<{ id: number }> {
-    return this.baseFetch<{ id: number }>("posts", "POST", { ...post });
+    return this.baseFetch<{ id: number }>(
+      "posts",
+      "POST",
+      post as unknown as Record<string, unknown>
+    );
   }
 
   getComments(): Promise<CommentDTO[]> {
